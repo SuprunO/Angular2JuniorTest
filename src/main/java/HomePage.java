@@ -42,8 +42,10 @@ public class HomePage extends BasePage {
         return getFourthNoteTitle().getText();
     }
 
+    private String DELETEICON=".col-xs-4:nth-child(3) .note-card>.icon";
     public WebElement deleteNoteIcon(){
-        return driver.findElement(By.cssSelector(".icon"));
+        waiter(DELETEICON);
+        return driver.findElement(By.cssSelector(DELETEICON));
     }
 
 

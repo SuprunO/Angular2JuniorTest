@@ -40,6 +40,9 @@ public class TestHomePage {
 
     //.col-xs-4:nth-child(1) div:nth-child(1) .title
 
+
+   // .col-xs-4:nth-child(3) .note-card>.icon
+
     @Test(priority = 2)
     public void deleteFourthNote() {
         basePage.hoverAndClick(driver, homepage.deleteNoteIcon(), homepage.deleteNoteIcon());
