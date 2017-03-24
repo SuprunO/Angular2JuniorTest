@@ -60,11 +60,11 @@ public class TestHomePage {
         Assert.assertTrue(homepage.getFifthNoteValueCurrentInputLength(), "The text length is more than 200 symbols");
     }
 
-//    @Test(priority = 2)
-//    public void deleteFourthNote() {
-//        basePage.hover(".col-xs-4:nth-child(4) .note-card");
-//        basePage.clickOn(".col-xs-4:nth-child(4) .note-card>.icon");
-//    }
+    @Test(priority = 2)
+    public void deleteFourthNote() {
+        basePage.hover(".col-xs-4:nth-child(4) .note-card");
+        basePage.clickOn(".col-xs-4:nth-child(4) .note-card>.icon");
+    }
 
 
     @AfterClass
