@@ -22,38 +22,50 @@ public class TestHomePage {
         homepage = new HomePage(driver);
         basePage = new BasePage(driver);
         driver.get("http://localhost:3000");
+        driver.manage().window().maximize();
     }
 
     //СURD test
     @Test(priority = 0)
     //Create
     public void addTextToNote() {
-        homepage.getTitleField().sendKeys("Bob's telephone Number");
-        homepage.getTakeANoteField().sendKeys("(093) 464-40-85");
-        homepage.getButton().click();
+        homepage.addTextToNote();
     }
 
     @Test(priority = 1)
-    public void CheckTheTextMatchWithInitial() {
-        Assert.assertEquals(homepage.getFourthNoteTitleCurrentInput(), "Bob's telephone Number", "The Created title is not match, it have to be: Bob's telephone Number ");
+    public void addExtendedTextToNote() {
+        homepage.addTextToNoteWithExtendedLength();
     }
-
-    //.col-xs-4:nth-child(1) div:nth-child(1) .title
-
-
-   // .col-xs-4:nth-child(3) .note-card>.icon
 
     @Test(priority = 2)
-    public void deleteFourthNote() {
-        basePage.hoverAndClick(driver, homepage.deleteNoteIcon(), homepage.deleteNoteIcon());
+    public void CheckForthNoteTextMatchWithInput() {
+        Assert.assertEquals(homepage.getFourthNoteTitleText(), Boolean.TRUE, "The Created title is not match with input");
+        Assert.assertEquals(homepage.getFourthNoteValueText(), Boolean.TRUE, "The Created note value is not match with input");
     }
 
-    public void maxNotesToFail() {
-        int i;
-        for (i = 0; i < 30; i++) {
-            addTextToNote();
-        }
+    @Test (priority =  3)
+    public void getFourthNoteTitleCurrentInputLength() {
+        System.out.println(homepage.getFourthNoteTitleCurrentInputLength());
+        Assert.assertTrue(homepage.getFourthNoteTitleCurrentInputLength(), "The text length is more than 40 symbols");
+        System.out.println(homepage.getFourthNoteValueCurrentInputLength());
+        Assert.assertTrue(homepage.getFourthNoteValueCurrentInputLength(), "The text length is more than 200 symbols");
     }
+
+
+    @Test (priority =  4)
+    public void getFifthNoteValueCurrentInputLength() {
+        System.out.println(homepage.getFifthNoteTitleCurrentInputLength());
+        Assert.assertTrue(homepage.getFifthNoteTitleCurrentInputLength(), "The text length is more than 40 symbols: ");
+        System.out.println(homepage.getFifthNoteValueCurrentInputLength());
+        Assert.assertTrue(homepage.getFifthNoteValueCurrentInputLength(), "The text length is more than 200 symbols");
+    }
+
+//    @Test(priority = 2)
+//    public void deleteFourthNote() {
+//        basePage.hover(".col-xs-4:nth-child(4) .note-card");
+//        basePage.clickOn(".col-xs-4:nth-child(4) .note-card>.icon");
+//    }
+
 
     @AfterClass
     public void cleanUp() {
